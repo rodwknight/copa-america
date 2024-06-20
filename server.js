@@ -1,21 +1,17 @@
-import { fastify } from "fastify";
-import { DatabaseMemory } from "./database-memory.js";
+import { fastify } from "fastify"
+import { DatabaseMemory } from "./database-memory.js"
+import  cors  from "@fastify/cors"
 
 const server = fastify()
-
-const database = new DatabaseMemory();
-
-server.get('/', (request, reply) => {
-    reply.send(`
-        <!DOCTYPE html>
-            <h1>testes tituloo<h1>
-        </html>
-    `)
-
+await server.register(cors, {
+    origin: "http://localhost:5173"
 })
+const database = new DatabaseMemory()
+
+server.get('/', () => { })
 
 server.post('/videos', (request, reply) => {
-    const {title, description, duration } = request.body
+    const {title, description, duration } = request.body    
 
     database.create({
         title,
