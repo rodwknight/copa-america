@@ -18,3 +18,26 @@ model Video {
 
   @@map("videos")
 }
+
+model Time {
+  id String @id @default(uuid())
+  name String
+  group String
+
+  @@map("times")
+}
+
+model Rodada {
+  id String @id @default(uuid())
+  timeId String
+  position String
+
+  @@map("rodadas")
+}
+
+model Simulacao {
+  id String @id @default(uuid())
+  rodadaId String
+
+  @@map("simulacoes")
+}

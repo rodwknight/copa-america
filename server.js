@@ -5,6 +5,15 @@ const server = fastify()
 
 const database = new DatabaseMemory();
 
+server.get('/', (request, reply) => {
+    reply.send(`
+        <!DOCTYPE html>
+            <h1>testes tituloo<h1>
+        </html>
+    `)
+
+})
+
 server.post('/videos', (request, reply) => {
     const {title, description, duration } = request.body
 
@@ -48,3 +57,6 @@ server.delete('/videos/:id', (request, reply) => {
 server.listen({
     port: 3333
 })
+
+
+
